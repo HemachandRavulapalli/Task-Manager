@@ -75,9 +75,8 @@ This project is configured for **EAS Build**. To generate your own APK:
 
 | Empty State | Tasks Added | Completed Task |
 | :---: | :---: | :---: |
-| ![Empty State](https://via.placeholder.com/200x400?text=Empty+State) | ![Tasks Added](https://via.placeholder.com/200x400?text=Tasks+Added) | ![Completed](https://via.placeholder.com/200x400?text=Completed) |
+| ![Empty State](./Screenshots/EmptyState.png) | ![Tasks Added](./Screenshots/TaskAdded.png) | ![Completed](./Screenshots/Completed.png) |
 
-*(Note: Replace these placeholders with actual screenshots from your phone/browser!)*
 
 ---
 
