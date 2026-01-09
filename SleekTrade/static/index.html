@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SleekTrade Terminal</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- TradingView Widget Script -->
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+</head>
+
+<body>
+    <aside>
+        <div class="logo-container">
+            <div class="logo-square">S</div>
+            <h1 class="logo-text">SleekTrade</h1>
+        </div>
+
+        <nav class="nav-links">
+            <a href="#" class="nav-item active">
+                <span class="icon">📊</span> Dashboard
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">📈</span> Market Data
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">📜</span> History
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">⚙️</span> Settings
+            </a>
+        </nav>
+
+        <div class="bot-status-container" id="status-panel">
+            <span class="status-label">TERMINAL STATUS</span>
+            <div id="bot-status">
+                <span class="status-dot"></span>
+                SYNCING...
+            </div>
+        </div>
+    </aside>
+
+    <main>
+        <div class="dashboard-grid">
+            <div class="main-column">
+                <div class="balance-overview">
+                    <div class="panel stat-box">
+                        <div class="stat-label">ACCOUNT BALANCE</div>
+                        <div class="stat-value highlight" id="balance-value">0.00 USDT</div>
+                    </div>
+                    <div class="panel stat-box">
+                        <div class="stat-label">AVAILABLE MARGIN</div>
+                        <div class="stat-value" id="available-value">0.00 USDT</div>
+                    </div>
+                    <div class="panel stat-box">
+                        <div class="stat-label">SESSION PNL</div>
+                        <div class="stat-value" style="color: #00ffaa;">+$0.00</div>
+                    </div>
+                </div>
+
+                <div class="panel" style="margin-bottom: 1.5rem;">
+                    <div class="panel-header">
+                        <h2>Market Chart (BTCUSDT)</h2>
+                        <span style="font-size: 0.7rem; color: var(--text-dim);">REAL-TIME FEED</span>
+                    </div>
+                    <div id="tv-chart"></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>Active Orders</h2>
+                    </div>
+                    <div class="table-container">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>SYMBOL</th>
+                                    <th>SIDE</th>
+                                    <th>TYPE</th>
+                                    <th>PRICE</th>
+                                    <th>QUANTITY</th>
+                                    <th>STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-list">
+                                <!-- Injected by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-column">
+                <div class="panel order-panel">
+                    <div class="panel-header" style="padding: 0 0 1rem 0; border: none;">
+                        <h2>Terminal Execute</h2>
+                    </div>
+
+                    <div class="trade-tabs">
+                        <div class="trade-tab active" data-type="MARKET">MARKET</div>
+                        <div class="trade-tab" data-type="LIMIT">LIMIT</div>
+                        <div class="trade-tab" data-type="STOP_LIMIT">STOP</div>
+                    </div>
+
+                    <div class="side-toggle">
+                        <button class="btn-side buy active" data-side="BUY">BUY / LONG</button>
+                        <button class="btn-side sell" data-side="SELL">SELL / SHORT</button>
+                    </div>
+
+                    <form id="order-form">
+                        <div class="input-field">
+                            <label>TRADING PAIR</label>
+                            <input type="text" id="symbol" value="BTCUSDT" placeholder="BTCUSDT">
+                        </div>
+
+                        <div class="input-field">
+                            <label>ORDER QUANTITY</label>
+                            <input type="number" id="quantity" step="0.001" placeholder="0.000">
+                        </div>
+
+                        <div id="price-fields" style="display: none;">
+                            <div class="input-field">
+                                <label>LIMIT PRICE</label>
+                                <input type="number" id="price" step="0.01" placeholder="0.00">
+                            </div>
+                        </div>
+
+                        <div id="stop-fields" style="display: none;">
+                            <div class="input-field">
+                                <label>STOP ACTIVATION</label>
+                                <input type="number" id="stop_price" step="0.01" placeholder="0.00">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-execute buy" id="place-order-btn">SEND ORDER</button>
+                    </form>
+                </div>
+
+                <div class="panel" style="margin-top: 1.5rem; padding: 1rem;">
+                    <div class="stat-label" style="margin-bottom: 0.5rem;">QUICK STATS</div>
+                    <div
+                        style="font-size: 0.8rem; display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                        <span>24h Vol</span>
+                        <span style="color: var(--text-main);">$14.2B</span>
+                    </div>
+                    <div style="font-size: 0.8rem; display: flex; justify-content: space-between;">
+                        <span>Liquidation Risk</span>
+                        <span style="color: #00ffaa;">LOW</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="notifications"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

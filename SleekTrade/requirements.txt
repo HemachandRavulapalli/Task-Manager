@@ -1,0 +1,5 @@
+python-binance
+fastapi
+uvicorn
+python-dotenv
+rich

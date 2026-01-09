@@ -1,0 +1,346 @@
+:root {
+    --bg-dark: #0a0b0d;
+    --sidebar-bg: #111417;
+    --card-bg: #161a1e;
+    --accent: #00ffaa;
+    --accent-glow: rgba(0, 255, 170, 0.2);
+    --danger: #ff4d4d;
+    --danger-glow: rgba(255, 77, 77, 0.2);
+    --text-main: #e6e8ea;
+    --text-dim: #848e9c;
+    --border-color: #2b3139;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar */
+aside {
+    width: 280px;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.logo-square {
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: var(--bg-dark);
+}
+
+.logo-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    list-style: none;
+    flex: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+}
+
+.nav-item.active {
+    color: var(--accent);
+}
+
+.bot-status-container {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.status-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Main Content Area */
+main {
+    flex: 1;
+    overflow-y: auto;
+    background: var(--bg-dark);
+    padding: 2rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Common Card Style */
+.panel {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.panel-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-header h2 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+}
+
+/* Balance Section */
+.balance-overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-box {
+    padding: 1.5rem;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+}
+
+.stat-value.highlight {
+    color: var(--accent);
+}
+
+/* Chart Container Placeholder */
+#tv-chart {
+    height: 400px;
+    width: 100%;
+    background: #131722;
+}
+
+/* Order Form */
+.order-panel {
+    padding: 1.5rem;
+}
+
+.trade-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.trade-tab {
+    padding: 0.5rem;
+    background: #1e2329;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.trade-tab.active {
+    background: var(--accent);
+    color: var(--bg-dark);
+    border-color: var(--accent);
+    font-weight: 600;
+}
+
+.side-toggle {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-side {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #1e2329;
+    color: var(--text-dim);
+}
+
+.btn-side.buy.active {
+    background: var(--accent);
+    color: var(--bg-dark);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.btn-side.sell.active {
+    background: var(--danger);
+    color: white;
+    box-shadow: 0 0 15px var(--danger-glow);
+}
+
+.input-field {
+    margin-bottom: 1rem;
+}
+
+.input-field label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+}
+
+.input-field input {
+    width: 100%;
+    background: #1e2329;
+    border: 1px solid var(--border-color);
+    padding: 0.75rem;
+    border-radius: 4px;
+    color: white;
+    font-family: var(--font-mono);
+}
+
+.input-field input:focus {
+    border-color: var(--accent);
+    outline: none;
+}
+
+.btn-execute {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 4px;
+    border: none;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.2s;
+}
+
+.btn-execute.buy {
+    background: var(--accent);
+    color: var(--bg-dark);
+}
+
+.btn-execute.sell {
+    background: var(--danger);
+    color: white;
+}
+
+/* Table styling */
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.orders-table th {
+    text-align: left;
+    padding: 1rem;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.orders-table td {
+    padding: 1rem;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.side-buy {
+    color: var(--accent);
+}
+
+.side-sell {
+    color: var(--danger);
+}
+
+/* Notifications */
+#notifications {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 1000;
+}
+
+.toast {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    animation: slideLeft 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
